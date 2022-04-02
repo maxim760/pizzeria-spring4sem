@@ -1,17 +1,13 @@
 package com.example.pizzeria.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 
 @Entity
@@ -19,6 +15,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue
@@ -42,6 +41,18 @@ public class UserEntity implements UserDetails {
     )
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<RoleEntity> roles = new HashSet<>();
+
+    // полученные сертификаты
+    @OneToMany(mappedBy = "toUser", fetch = FetchType.EAGER)
+    private List<CertificateEntity> receivedCertificates = new ArrayList<>();
+
+    // подаренные сертификаты
+    @OneToMany(mappedBy = "fromUser", fetch = FetchType.EAGER)
+    private List<CertificateEntity> donatedCertificates = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+    private AddressEntity address;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -22,9 +22,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().antMatchers("/login", "/logout", "/registration", "/users").permitAll()
+                .authorizeRequests().antMatchers(
+                    "/login",
+                    "/logout",
+                    "/registration",
+                    "/users",
+                    "/img/**",
+                    "/static/**"
+                ).permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin();
+                .and().formLogin().defaultSuccessUrl("/", false).permitAll()
+                .and().logout().logoutSuccessUrl("/login").permitAll();
     }
 
 

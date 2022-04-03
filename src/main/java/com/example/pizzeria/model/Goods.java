@@ -29,6 +29,7 @@ public class Goods {
         goods.setPrice(goodsEntity.getPrice());
         goods.setImg(goodsEntity.getImg());
         goods.setName(goodsEntity.getName());
+        goods.setId(goodsEntity.getId());
         return goods;
     }
     public static List<Goods> toModel(List<GoodsEntity> goodsEntities) {

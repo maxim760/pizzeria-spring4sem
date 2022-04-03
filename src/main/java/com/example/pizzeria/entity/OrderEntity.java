@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 @Getter
 @Setter
 @ToString
@@ -33,4 +33,11 @@ public class OrderEntity {
     )
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<GoodsEntity> goods = new HashSet<>();
+
+    public void addGoods(GoodsEntity goodsItem) {
+        this.goods.add(goodsItem);
+        List<OrderEntity> currentOrders = goodsItem.getOrders();
+        currentOrders.add(this);
+        goodsItem.setOrders(currentOrders);
+    }
 }

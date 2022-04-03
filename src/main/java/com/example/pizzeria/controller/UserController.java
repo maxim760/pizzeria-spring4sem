@@ -6,6 +6,7 @@ import com.example.pizzeria.repository.UserRepo;
 import com.example.pizzeria.service.UserService;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping
-    @RolesAllowed({"ADMIN"})
+    @PreAuthorize("hasAuthority('ADMIN')")
     Object add(UserEntity userEntity, Model model, RedirectAttributes redirectAttributes) {
         try {
             userService.addUser(userEntity);

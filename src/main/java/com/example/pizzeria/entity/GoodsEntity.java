@@ -18,13 +18,13 @@ public class GoodsEntity {
     @Id
     @GeneratedValue
     private UUID id;
-    @Column(name = "goods_type")
-    private String goodsType;
-    private int discount;
+    @Column(name = "good_type")
+    private String goodsType = "";
+    private int discount = 0;
     private int price;
-    private String name;
-    private String description;
-    private String img;
+    private String name = "";
+    private String description = "";
+    private String img = "";
 
     @ManyToMany(mappedBy = "goods", fetch = FetchType.LAZY)
     private List<OrderEntity> orders = new ArrayList<OrderEntity>();

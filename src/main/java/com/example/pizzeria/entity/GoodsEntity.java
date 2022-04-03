@@ -1,6 +1,7 @@
 package com.example.pizzeria.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,6 +26,6 @@ public class GoodsEntity {
     private String description;
     private String img;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<OrderEntity> users = new ArrayList<OrderEntity>();
+    @ManyToMany(mappedBy = "goods", fetch = FetchType.LAZY)
+    private List<OrderEntity> orders = new ArrayList<OrderEntity>();
 }

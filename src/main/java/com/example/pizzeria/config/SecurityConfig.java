@@ -26,13 +26,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                     "/login",
                     "/logout",
                     "/registration",
-                    "/users",
+                    "/error",
                     "/img/**",
-                    "/static/**"
+                    "/static/**",
+                    "/css/**",
+                    "/js/**"
                 ).permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/", false).permitAll()
-                .and().logout().logoutSuccessUrl("/login").permitAll();
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true).permitAll()
+                .and().logout().permitAll();
     }
 
 

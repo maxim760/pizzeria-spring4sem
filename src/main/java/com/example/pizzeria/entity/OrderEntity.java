@@ -32,5 +32,5 @@ public class OrderEntity {
             inverseJoinColumns = @JoinColumn(name = "goods_id")
     )
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<GoodsEntity> goods = new ArrayList<GoodsEntity>();
+    private Set<GoodsEntity> goods = new HashSet<>();
 }

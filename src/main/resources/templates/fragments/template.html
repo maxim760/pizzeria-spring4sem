@@ -1,0 +1,42 @@
+<html xmlns:th="http://thymeleaf.org">
+<head th:fragment="head">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <title>Bella Пицца</title>
+</head>
+<body>
+<header th:fragment="header">
+    <nav>
+        <div class="nav-wrapper">
+            <a th:href="@{/home}" class="brand-logo left site-logo"><i class="material-icons ml-1">local_pizza</i>Bella Pizza</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons" style="color: white">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a th:href="@{/certificate}">Сертификаты</a></li>
+                <li><a th:href="@{/order}">Сделать заказ</a></li>
+                <li><a th:href="@{/history}">История</a></li>
+                <li><a th:href="@{/logout}">Выйти</a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a th:href="@{/home}">Главная</a></li>
+        <li><a th:href="@{/certificate}">Сертификаты</a></li>
+        <li><a th:href="@{/order}">Сделать заказ</a></li>
+        <li><a th:href="@{/history}">История</a></li>
+        <li><a th:href="@{/logout}">Выйти</a></li>
+    </ul>
+</header>
+<div th:fragment="toast(message)" >
+    <div th:if="${message}" class="toast">
+        <button class="toast-close">x</button>
+        <p th:text="${message}"></p>
+    </div>
+</div>
+<div th:fragment="script">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/materialize.js}"></script>
+</div>
+</body>
+</html>

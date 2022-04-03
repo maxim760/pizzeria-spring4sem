@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<div th:replace="~{/fragments/template :: head}"></div>
+<body>
+<div th:replace="~{/fragments/template :: header}"></div>
+<div class="container center-align">
+    <div th:replace="~{/fragments/template :: toast(${message})}"></div>
+    <h3>Список сертификатов</h3>
+    <a class="waves-effect waves-light btn mt-1" th:href="@{/certificate/add}">Подарить</a>
+    <div style="display: flex; justify-content: space-around; width: 100%; align-items: baseline">
+        <ul class="collection with-header home-info">
+            <li class="collection-header home-info-item-header"><h3 class="home-info-value">Полученные</h3></li>
+            <li th:each="cert : ${received}" class="collection-item home-info-item column-cert">
+
+                    <div class="column-cert-item"><span>От кого</span><p class="home-info-value" th:text="${cert.getFromUser().getFirstName() + ' ' + cert.getFromUser().getLastName()}"></div>
+                    <div class="column-cert-item"><span>Когда</span><p class="home-info-value" th:text="${cert.getDateCreate()}"></div>
+                    <div class="column-cert-item"><span>Цена</span><p class="home-info-value" th:text="${cert.getPrice()}"></div>
+            </li>
+            <li class="collection-item home-info-item" th:if="${received.size() == 0}">Список пуст</li>
+        </ul>
+        <ul class="collection with-header home-info">
+            <li class="collection-header home-info-item-header"><h3 class="home-info-value">Подаренные</h3></li>
+            <li th:each="cert : ${donated}" class="collection-item home-info-item column-cert">
+                    <div class="column-cert-item"><span>Кому</span><p class="home-info-value" th:text="${cert.getToUser().getFirstName() + ' ' + cert.getToUser().getLastName()}"></div>
+                <div class="column-cert-item"> <span>Когда</span><p class="home-info-value" th:text="${cert.getDateCreate()}"></div>
+                <div class="column-cert-item"> <span>Цена</span><p class="home-info-value" th:text="${cert.getPrice()}"></div>
+
+            </li>
+            <li class="collection-item home-info-item" th:if="${donated.size() == 0}">Список пуст</li>
+        </ul>
+    </div>
+</div>
+<script th:replace="~{/fragments/template :: script}"></script>
+</body>
+</html>

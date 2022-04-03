@@ -21,11 +21,9 @@ public class CertificateEntity {
     private UUID id;
     @ManyToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "to_user_id")
-    @JsonIgnore
     private UserEntity toUser;
     @ManyToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "from_user_id")
-    @JsonIgnore
     private UserEntity fromUser;
     private int price;
     @Column(name = "date_create")

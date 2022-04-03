@@ -17,7 +17,7 @@ public class AddressEntity {
     @Id
     @GeneratedValue
     private UUID id;
-    @OneToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER)
+    @OneToOne(targetEntity = UserEntity.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private UserEntity user;
     private String country;

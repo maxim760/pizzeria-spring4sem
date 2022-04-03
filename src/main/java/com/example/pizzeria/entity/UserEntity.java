@@ -2,11 +2,17 @@ package com.example.pizzeria.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -14,7 +20,6 @@ import java.util.*;
 @Table(name = "users")
 @Getter
 @Setter
-@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -43,14 +48,15 @@ public class UserEntity implements UserDetails {
     private Set<RoleEntity> roles = new HashSet<>();
 
     // полученные сертификаты
-    @OneToMany(mappedBy = "toUser", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "toUser")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<CertificateEntity> receivedCertificates = new ArrayList<>();
-
     // подаренные сертификаты
-    @OneToMany(mappedBy = "fromUser", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "fromUser")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<CertificateEntity> donatedCertificates = new ArrayList<>();
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.ALL})
     private AddressEntity address;
 
 
@@ -62,6 +68,10 @@ public class UserEntity implements UserDetails {
     public void addRole(RoleEntity role) {
         this.roles.add(role);
         role.getUsers().add(this);
+    }
+    public void addAddress(AddressEntity address) {
+        this.address = address;
+        address.setUser(this);
     }
 
     @Override
@@ -84,4 +94,49 @@ public class UserEntity implements UserDetails {
         return true;
     }
 
+
+    public List<CertificateEntity> getDescDonatedCertificates() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss"); //your own date format
+        Collections.sort(this.donatedCertificates, new Comparator<CertificateEntity>() {
+            @Override
+            public int compare(CertificateEntity o1, CertificateEntity o2) {
+                try {
+                    return simpleDateFormat.parse(o2.getDateCreate()).compareTo(simpleDateFormat.parse(o1.getDateCreate()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    return 0;
+                }
+            }
+        });
+        return this.donatedCertificates;
+    }
+
+    public List<CertificateEntity> getDescReceivedCertififcates() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss"); //your own date format
+        Collections.sort(this.receivedCertificates, new Comparator<CertificateEntity>() {
+            @Override
+            public int compare(CertificateEntity o1, CertificateEntity o2) {
+                try {
+                    return simpleDateFormat.parse(o2.getDateCreate()).compareTo(simpleDateFormat.parse(o1.getDateCreate()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    return 0;
+                }
+            }
+        });
+        return this.receivedCertificates;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity(" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", cash=" + cash +
+                ')';
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.pizzeria.service;
 
 import com.example.pizzeria.DTO.CreateOrderDTO;
+import com.example.pizzeria.Helpers.Utilities;
 import com.example.pizzeria.entity.GoodsEntity;
 import com.example.pizzeria.entity.OrderEntity;
 import com.example.pizzeria.entity.UserEntity;
@@ -34,7 +35,7 @@ public class OrderService {
         }
         OrderEntity newOrder = new OrderEntity();
         Date currentDate = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy HH:mm");
+        SimpleDateFormat formatter = Utilities.getDefaultDateFormat();
         String createDate = formatter.format(currentDate);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Long timestampTime = timestamp.getTime();

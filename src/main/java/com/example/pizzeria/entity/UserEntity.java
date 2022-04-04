@@ -1,5 +1,6 @@
 package com.example.pizzeria.entity;
 
+import com.example.pizzeria.Helpers.Utilities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
@@ -104,33 +105,11 @@ public class UserEntity implements UserDetails {
 
 
     public List<CertificateEntity> getDescDonatedCertificates() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss"); //your own date format
-        Collections.sort(this.donatedCertificates, new Comparator<CertificateEntity>() {
-            @Override
-            public int compare(CertificateEntity o1, CertificateEntity o2) {
-                try {
-                    return simpleDateFormat.parse(o2.getDateCreate()).compareTo(simpleDateFormat.parse(o1.getDateCreate()));
-                } catch (ParseException e) {
-                    return 0;
-                }
-            }
-        });
-        return this.donatedCertificates;
+        return Utilities.sortCertificates(this.donatedCertificates);
     }
 
     public List<CertificateEntity> getDescReceivedCertififcates() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm:ss"); //your own date format
-        Collections.sort(this.receivedCertificates, new Comparator<CertificateEntity>() {
-            @Override
-            public int compare(CertificateEntity o1, CertificateEntity o2) {
-                try {
-                    return simpleDateFormat.parse(o2.getDateCreate()).compareTo(simpleDateFormat.parse(o1.getDateCreate()));
-                } catch (ParseException e) {
-                    return 0;
-                }
-            }
-        });
-        return this.receivedCertificates;
+        return Utilities.sortCertificates(this.receivedCertificates);
     }
 
     @Override

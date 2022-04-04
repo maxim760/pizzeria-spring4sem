@@ -1,5 +1,6 @@
 package com.example.pizzeria.service;
 
+import com.example.pizzeria.Helpers.Utilities;
 import com.example.pizzeria.entity.CertificateEntity;
 import com.example.pizzeria.entity.UserEntity;
 import com.example.pizzeria.repository.CertificateRepo;
@@ -34,7 +35,7 @@ public class CertificateService {
         certificate.setToUser(toUser);
         certificate.setPrice(certInfo.getPrice());
         Date currentDate = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
+        SimpleDateFormat formatter = Utilities.getDefaultDateFormat();
         String createDate = formatter.format(currentDate);
         certificate.setDateCreate(createDate);
         profileService.removeCash(currentUser, certInfo.getPrice());

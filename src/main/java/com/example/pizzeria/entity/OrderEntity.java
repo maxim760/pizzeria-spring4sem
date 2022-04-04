@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.*;
@@ -22,8 +24,10 @@ public class OrderEntity {
     private UserEntity user;
     @Column(name = "date_create")
     private String dateCreate;
+    private Long timestamp;
     @Column(name = "with_delivery")
-    private boolean withDelivery;
+    @Getter
+    private Boolean withDelivery;
     private int price;
 
     @JoinTable(
@@ -32,11 +36,12 @@ public class OrderEntity {
             inverseJoinColumns = @JoinColumn(name = "goods_id")
     )
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<GoodsEntity> goods = new HashSet<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<GoodsEntity> goods = new ArrayList<>();
 
     public void addGoods(GoodsEntity goodsItem) {
         this.goods.add(goodsItem);
-        List<OrderEntity> currentOrders = goodsItem.getOrders();
+        Set<OrderEntity> currentOrders = goodsItem.getOrders();
         currentOrders.add(this);
         goodsItem.setOrders(currentOrders);
     }

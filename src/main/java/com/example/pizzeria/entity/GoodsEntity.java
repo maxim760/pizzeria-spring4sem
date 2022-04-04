@@ -29,5 +29,5 @@ public class GoodsEntity {
     private String img = "";
 
     @ManyToMany(mappedBy = "goods", fetch = FetchType.LAZY)
-    private List<OrderEntity> orders = new ArrayList<OrderEntity>();
+    private Set<OrderEntity> orders = new HashSet<>();
 }

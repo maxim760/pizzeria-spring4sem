@@ -56,6 +56,10 @@ public class UserEntity implements UserDetails {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<CertificateEntity> donatedCertificates = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<OrderEntity> orders = new ArrayList<>();
+
     @OneToOne(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true, cascade = {CascadeType.ALL})
     private AddressEntity address;
 
@@ -72,6 +76,10 @@ public class UserEntity implements UserDetails {
     public void addAddress(AddressEntity address) {
         this.address = address;
         address.setUser(this);
+    }
+    public void addOrder(OrderEntity order) {
+        this.orders.add(order);
+        order.setUser(this);
     }
 
     @Override

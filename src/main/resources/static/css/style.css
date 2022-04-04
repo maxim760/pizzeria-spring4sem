@@ -70,6 +70,9 @@ input,select,button,textarea {
 .mt-1 {
     margin-top: 8px;
 }
+.mt-2 {
+    margin-top: 16px;
+}
 .m-0 {
     margin: 0 !important;
 }
@@ -113,6 +116,10 @@ input,select,button,textarea {
     margin-left: auto !important;
     margin-right: auto !important;
     float: none !important;
+}
+
+.w100 {
+    width: 100%;
 }
 
 .alert {
@@ -203,6 +210,7 @@ input,select,button,textarea {
 
 .wrap {
     flex-wrap: wrap !important;
+    row-gap: 8px;
 }
 
 .card-content-item {

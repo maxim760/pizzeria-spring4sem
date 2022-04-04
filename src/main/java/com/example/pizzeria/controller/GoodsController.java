@@ -34,8 +34,6 @@ public class GoodsController {
     public String getGoodsPage(Model model, RedirectAttributes attrs) {
         val filterDto = new FilterGoodsDTO();
         List<GoodsEntity> allGoods = goodsService.getAllGoods(filterDto);
-        System.out.println(allGoods.get(0));
-        System.out.println(allGoods.get(0).getCurrentPrice());
         val filterDtoFromAttr = model.getAttribute("filterDto");
         val goodsFromAttr = model.getAttribute("goods");
         model.addAttribute("goods", goodsFromAttr == null ? Goods.toModel(allGoods) : goodsFromAttr);

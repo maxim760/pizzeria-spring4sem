@@ -13,6 +13,7 @@ public interface GoodsRepo extends JpaRepository<GoodsEntity, UUID> {
 
     default List<GoodsEntity> filterByFields(String name, int minPrice, int maxPrice) {
         return findAllByNameContainingIgnoreCaseAndCurrentPriceBetweenOrDescriptionContainingIgnoreCaseAndCurrentPriceBetweenOrGoodsTypeContainingIgnoreCaseAndCurrentPriceBetween(name, minPrice, maxPrice, name, minPrice, maxPrice, name, minPrice, maxPrice);
-
     }
+
+    List<GoodsEntity> findAllByIdIn(List<UUID> ids);
 }

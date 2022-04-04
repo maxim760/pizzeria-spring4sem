@@ -8,6 +8,7 @@ import com.example.pizzeria.repository.GoodsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +22,16 @@ public class GoodsService {
         int maxPrice = dto.getMaxPrice() == 0 ? Integer.MAX_VALUE : Math.min(dto.getMaxPrice(), Integer.MAX_VALUE);
         return goodsRepo.filterByFields(dto.getName(), Math.max(dto.getMinPrice(), 0), maxPrice);
     }
-
+    public List<GoodsEntity> getAllByIds(List<UUID> ids) {
+        List<GoodsEntity> result = new ArrayList<>();
+        for(UUID id: ids) {
+            GoodsEntity item = goodsRepo.findById(id).orElseGet(null);
+            if(item != null) {
+                result.add(item);
+            }
+        }
+        return result;
+    }
     public GoodsEntity createGoodsItem(GoodsEntity goodsItem) throws Exception {
         System.out.println("start service create");
         goodsItem.setDiscount(0);
@@ -34,6 +44,7 @@ public class GoodsService {
         System.out.println("end service create after save");
         return goodsItem;
     }
+
     public GoodsEntity editDiscount(UUID goodsItemId, int discount) throws Exception {
         if(discount < 0) {
             discount = 0;

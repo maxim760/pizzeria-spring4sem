@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<div th:replace="~{/fragments/template :: head}"></div>
+<body>
+<div th:replace="~{/fragments/template :: header}"></div>
+<div class="container center-align">
+    <h5 class="mb-1 mt-1">История заказов</h5>
+    <h6 th:text="'Всего потрачено: ' + ${cost}"></h6>
+    <div style="display: flex; width: 100%; justify-content: center; column-gap: 12px" class="mt-1 mb-3">
+        <a th:href="@{/order/add}" class="waves-effect waves-light btn-small">Сформировать заказ</a>
+    </div>
+    <div class="row wrap" style="display: flex; align-items: stretch">
+        <h3 class="col s12 center-x" style="width: 100%" th:if="${orders.size() == 0}">Заказов пока нет</h3>
+        <div class="col s12 m6 l4" style="margin-left: 0 !important;" th:each="item : ${orders}">
+            <div class="card horizontal m-0 card-goods">
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p class="card-content-item">Дата - <bold><span th:text="${item.getDateCreate()}"></span></bold></p>
+                        <p class="card-content-item">Цена - <bold><span th:text="${item.getPrice()}"></span></bold></p>
+                        <p th:if="${item.getWithDelivery()}" class="card-content-item"><u>С доставкой</u></p>
+                        <p th:if="${!item.getWithDelivery()}" class="card-content-item"><u>Без доставки</u></p>
+                        <p class="card-content-item">Кол-во товаров: <bold><span th:text="${item.getGoods().size()}"></span></bold></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:replace="~{/fragments/template :: script}"></script>
+</body>
+</html>

@@ -15,6 +15,7 @@ public class Goods {
     private String goodsType;
     private int discount;
     private int price;
+    private int currentPrice;
     private String name;
     private String description;
     private String img;
@@ -27,6 +28,7 @@ public class Goods {
         goods.setDescription(goodsEntity.getDescription());
         goods.setDiscount(goodsEntity.getDiscount());
         goods.setPrice(goodsEntity.getPrice());
+        goods.setCurrentPrice(goodsEntity.getCurrentPrice());
         goods.setImg(goodsEntity.getImg());
         goods.setName(goodsEntity.getName());
         goods.setId(goodsEntity.getId());

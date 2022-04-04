@@ -22,6 +22,8 @@ public class GoodsEntity {
     private String goodsType = "";
     private int discount = 0;
     private int price;
+    @Column(name = "current_price")
+    private int currentPrice;
     private String name = "";
     private String description = "";
     private String img = "";

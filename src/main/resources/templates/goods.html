@@ -17,11 +17,11 @@
         </div>
         <div class="input-field col s3">
             <input required id="minPrice" name="minPrice" th:field="*{minPrice}" type="number" class="validate">
-            <label for="minPrice">Мин. цена (без скидки)</label>
+            <label for="minPrice">Мин. цена</label>
         </div>
         <div class="input-field col s3">
             <input required id="maxPrice" name="maxPrice" th:field="*{maxPrice}" type="number" class="validate">
-            <label for="maxPrice">Макс. цена (без скидки)</label>
+            <label for="maxPrice">Макс. цена</label>
         </div>
         <div class="cols s-1">
             <button class="waves-effect waves-light btn-small" type="submit"><i class="material-icons">search</i></button>
@@ -38,7 +38,7 @@
                         <div th:if="${item.getImg() == null || item.getImg() == ''}" style="height: 200px; width: 100%" />
                         <p th:if="${item.getDiscount() == 0}" class="card-content-item">Цена - <bold><span th:text="${item.getPrice()}"></span></bold></p>
                         <p th:if="${item.getDiscount() != 0}" class="card-content-item">Цена - <s><bold><span th:text="${item.getPrice()}"></span></bold></s></p>
-                        <p th:if="${item.getDiscount() != 0}" class="card-content-item">Цена со скидкой - <bold><span th:text="${@thymeMath.ceil(item.getPrice() * (100 - item.getDiscount()) / 100)}"></span></bold></p>
+                        <p th:if="${item.getDiscount() != 0}" class="card-content-item">Цена со скидкой - <bold><span th:text="${item.getCurrentPrice()}"></span></bold></p>
                         <p class="card-content-item">Тип - <bold><span th:text="${item.getGoodsType()}"></span></bold></p>
                         <p class="card-content-item">Название - <bold><span th:text="${item.getName()}"></span></bold></p>
                         <p class="card-content-item">Описание - <bold><span th:text="${item.getDescription()}"></span></bold></p>

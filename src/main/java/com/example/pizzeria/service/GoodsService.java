@@ -2,6 +2,7 @@ package com.example.pizzeria.service;
 
 
 import com.example.pizzeria.DTO.FilterGoodsDTO;
+import com.example.pizzeria.Helpers.Utilities;
 import com.example.pizzeria.entity.GoodsEntity;
 import com.example.pizzeria.repository.GoodsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class GoodsService {
         if(goodsItem.getPrice() <= 0) {
             throw new Exception("Цена должна быть больше нуля");
         }
+        goodsItem.setCurrentPrice(goodsItem.getPrice());
         System.out.println("end service create before save");
         goodsRepo.save(goodsItem);
         System.out.println("end service create after save");
@@ -40,6 +42,7 @@ public class GoodsService {
         }
         GoodsEntity goodsItemFromDb = goodsRepo.findById(goodsItemId).orElseThrow(() -> new Exception("Товар не найден"));
         goodsItemFromDb.setDiscount(discount);
+        goodsItemFromDb.setCurrentPrice(Utilities.ceil(goodsItemFromDb.getPrice() * (100 - discount) / 100));
         goodsRepo.save(goodsItemFromDb);
         return goodsItemFromDb;
     }
@@ -53,6 +56,7 @@ public class GoodsService {
         goodsItemFromDb.setDescription(goodsItem.getDescription());
         goodsItemFromDb.setGoodsType(goodsItem.getGoodsType());
         goodsItemFromDb.setPrice(goodsItem.getPrice());
+        goodsItemFromDb.setCurrentPrice(Utilities.ceil(goodsItemFromDb.getPrice() * (100 - goodsItemFromDb.getDiscount()) / 100));
         goodsItemFromDb.setImg(goodsItem.getImg());
         goodsRepo.save(goodsItemFromDb);
         return goodsItemFromDb;

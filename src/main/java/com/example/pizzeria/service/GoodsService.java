@@ -33,15 +33,12 @@ public class GoodsService {
         return result;
     }
     public GoodsEntity createGoodsItem(GoodsEntity goodsItem) throws Exception {
-        System.out.println("start service create");
         goodsItem.setDiscount(0);
         if(goodsItem.getPrice() <= 0) {
             throw new Exception("Цена должна быть больше нуля");
         }
         goodsItem.setCurrentPrice(goodsItem.getPrice());
-        System.out.println("end service create before save");
         goodsRepo.save(goodsItem);
-        System.out.println("end service create after save");
         return goodsItem;
     }
 

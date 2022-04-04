@@ -42,8 +42,6 @@ public class OrderService {
             GoodsEntity goodsItemFromDb = goodsRepo.findById(goodsItemId).orElseThrow(() -> new Exception("Товар не найден"));
             newOrder.addGoods(goodsItemFromDb);
         }
-        System.out.println(newOrder.getGoods().size());
-        System.out.println("size");
         newOrder.setUser(currentUser);
         newOrder.setDateCreate(createDate);
         int price = 0;

@@ -111,7 +111,6 @@ public class UserEntity implements UserDetails {
                 try {
                     return simpleDateFormat.parse(o2.getDateCreate()).compareTo(simpleDateFormat.parse(o1.getDateCreate()));
                 } catch (ParseException e) {
-                    e.printStackTrace();
                     return 0;
                 }
             }
@@ -127,7 +126,6 @@ public class UserEntity implements UserDetails {
                 try {
                     return simpleDateFormat.parse(o2.getDateCreate()).compareTo(simpleDateFormat.parse(o1.getDateCreate()));
                 } catch (ParseException e) {
-                    e.printStackTrace();
                     return 0;
                 }
             }

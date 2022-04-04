@@ -37,8 +37,6 @@ public class UserController {
             model.addAttribute("message", "Пользователь добавлен");
             return "redirect:/home";
         } catch (Exception e) {
-            System.out.println("error");
-            System.out.println(e.getMessage());
             redirectAttributes.addFlashAttribute("errorTitle", "Пользователь не добавлен");
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/error";

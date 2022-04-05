@@ -39,16 +39,15 @@ public class OrderService {
         String createDate = formatter.format(currentDate);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Long timestampTime = timestamp.getTime();
+        int price = 0;
         for(UUID goodsItemId: orderDTO.getGoodsIds()) {
             GoodsEntity goodsItemFromDb = goodsRepo.findById(goodsItemId).orElseThrow(() -> new Exception("Товар не найден"));
             newOrder.addGoods(goodsItemFromDb);
+            price += goodsItemFromDb.getCurrentPrice();
         }
         newOrder.setUser(currentUser);
         newOrder.setDateCreate(createDate);
-        int price = 0;
-        for(GoodsEntity goodsItem: newOrder.getGoods()) {
-            price += goodsItem.getCurrentPrice();
-        }
+
         boolean withDelivery = orderDTO.getWithDelivery() != null;
         if(withDelivery) {
             price += deliveryPrice;

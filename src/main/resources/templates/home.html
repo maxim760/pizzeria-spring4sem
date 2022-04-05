@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
-<div th:replace="~{/fragments/template :: head}"></div>
+<div th:replace="~{fragments/template :: head}"></div>
 <body>
-    <div th:replace="~{/fragments/template :: header}"></div>
+    <div th:replace="~{fragments/template :: header}"></div>
     <div class="container center-align">
-    <div th:replace="~{/fragments/template :: toast(${message})}"></div>
+    <div th:replace="~{fragments/template :: toast(${message})}"></div>
     <div sec:authorize="isAuthenticated()">
         <h2>Ваш профиль</h2>
         <p>Ваш баланс — <bold><span th:text="${#authentication.getPrincipal().getCash()}"></span></bold></p>
@@ -131,6 +131,6 @@
         <a th:href="@{/login}">Войдите в аккаунт</a>
     </div>
 </div>
-<script th:replace="~{/fragments/template :: script}"></script>
+<script th:replace="~{fragments/template :: script}"></script>
 </body>
 </html>

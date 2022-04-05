@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
-<div th:replace="~{/fragments/template :: head}"></div>
+<div th:replace="~{fragments/template :: head}"></div>
 <body>
-<div th:replace="~{/fragments/template :: header}"></div>
+<div th:replace="~{fragments/template :: header}"></div>
 <div class="container center-align">
-    <div th:replace="~{/fragments/template :: toast(${message})}"></div>
+    <div th:replace="~{fragments/template :: toast(${message})}"></div>
     <h3>Список сертификатов</h3>
     <a class="waves-effect waves-light btn mt-1" th:href="@{/certificate/add}">Подарить</a>
     <div style="display: flex; justify-content: space-around; width: 100%; align-items: baseline">
@@ -30,6 +30,6 @@
         </ul>
     </div>
 </div>
-<script th:replace="~{/fragments/template :: script}"></script>
+<script th:replace="~{fragments/template :: script}"></script>
 </body>
 </html>

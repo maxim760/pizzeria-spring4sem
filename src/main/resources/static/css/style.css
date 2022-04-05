@@ -213,6 +213,23 @@ input,select,button,textarea {
     row-gap: 8px;
 }
 
+.pt-1 {
+    padding-top: 8px;
+}
+
+.pb-1 {
+    padding-bottom: 8px;
+}
+.no-shadow {
+    box-shadow: none !important;
+}
+.p2 {
+    padding: 16px !important;
+}
+.p0 {
+    padding: 0 !important;
+}
+
 .card-content-item {
     font-size: 18px;
 }

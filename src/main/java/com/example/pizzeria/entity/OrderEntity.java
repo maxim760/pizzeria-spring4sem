@@ -41,8 +41,6 @@ public class OrderEntity {
 
     public void addGoods(GoodsEntity goodsItem) {
         this.goods.add(goodsItem);
-        Set<OrderEntity> currentOrders = goodsItem.getOrders();
-        currentOrders.add(this);
-        goodsItem.setOrders(currentOrders);
+//        goodsItem.addOrder(this);
     }
 }

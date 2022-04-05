@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
-<div th:replace="~{/fragments/template :: head}"></div>
+<div th:replace="~{fragments/template :: head}"></div>
 <body>
-<div th:replace="~{/fragments/template :: header}"></div>
+<div th:replace="~{fragments/template :: header}"></div>
 <div class="container center-align">
     <div>Подарите сертификат</div>
     <p>Ваш баланс — <bold><span th:text="${#authentication.getPrincipal().getCash()}"></span></bold></p>
@@ -57,6 +57,6 @@
         </div>
     </div>
 </div>
-<script th:replace="~{/fragments/template :: script}"></script>
+<script th:replace="~{fragments/template :: script}"></script>
 </body>
 </html>

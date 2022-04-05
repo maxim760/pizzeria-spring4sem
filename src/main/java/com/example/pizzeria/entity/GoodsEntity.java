@@ -30,4 +30,8 @@ public class GoodsEntity {
 
     @ManyToMany(mappedBy = "goods", fetch = FetchType.LAZY)
     private Set<OrderEntity> orders = new HashSet<>();
+
+    public void addOrder(OrderEntity order) {
+        this.orders.add(order);
+    }
 }

@@ -25,10 +25,10 @@
                         </div>
                     </div>
                     <div th:id="${item.getId()}" class="modal p0" style="background: white">
-                        <div class="col s12 m6 p0" style="margin-left: 0 !important;" th:each="item : ${item.getGoods()}">
+                        <div class="col s12 m6 l4 p0" style="margin-left: 0 !important;" th:each="item : ${item.getGoods()}">
                             <div class="card horizontal m-0 card-goods no-shadow">
                                 <div class="card-stacked">
-                                    <div class="card-content">
+                                    <div class="card-content p-1">
                                         <img th:if="${item.getImg() != null && item.getImg() != ''}" class="m-a mb-1" height="200px" width="auto" th:src="${item.getImg()}" />
                                         <div th:if="${item.getImg() == null || item.getImg() == ''}" style="height: 200px; width: 100%" />
                                         <p class="card-content-item">Тип - <bold><span th:text="${item.getGoodsType()}"></span></bold></p>

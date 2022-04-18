@@ -217,6 +217,10 @@ input,select,button,textarea {
     padding-top: 8px;
 }
 
+.p-1 {
+    padding: 8px !important;
+}
+
 .pb-1 {
     padding-bottom: 8px;
 }

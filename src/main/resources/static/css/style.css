@@ -71,7 +71,7 @@ input,select,button,textarea {
     margin-top: 8px;
 }
 .mt-2 {
-    margin-top: 16px;
+    margin-top: 16px !important;
 }
 .m-0 {
     margin: 0 !important;
@@ -208,11 +208,6 @@ input,select,button,textarea {
     overflow-wrap: anywhere;
 }
 
-.wrap {
-    flex-wrap: wrap !important;
-    row-gap: 8px;
-}
-
 .pt-1 {
     padding-top: 8px;
 }
@@ -273,3 +268,55 @@ input,select,button,textarea {
 .card-goods {
     height: 100%;
 }
+
+.profile-row {
+    display: flex;
+    flex-direction: row;
+    row-gap: 24px;
+}
+
+.btns-group {
+    display: flex;
+    row-gap: 16px;
+}
+
+.wrap{
+    flex-wrap: wrap !important;
+    row-gap: 16px !important;
+}
+
+.wrap * {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+@media (max-width: 900px) {
+    .profile-row {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-info {
+        width: 300px !important;
+        padding: 8px !important;
+    }
+    .inline-form {
+        flex-direction: column !important;
+    }
+    .inline-form * {
+        width: 100% !important;
+        margin-bottom: 8px !important;
+    }
+    .inline-form *:last-child {
+        margin-bottom: 0 !important;
+    }
+    .btns-group {
+        flex-direction: column !important;
+    }
+    .btns-group * {
+        width: 100% !important;
+    }
+}
+

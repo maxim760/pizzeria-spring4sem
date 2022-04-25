@@ -6,12 +6,12 @@
 <div class="container center-align">
     <h3 sec:authorize="!hasAuthority('ADMIN')">Меню</h3>
     <h3 sec:authorize="hasAuthority('ADMIN')">Товары</h3>
-    <div style="display: flex; width: 100%; justify-content: center; column-gap: 12px" class="mt-1 mb-3">
+    <div style="display: flex; width: 100%; justify-content: center; column-gap: 12px" class="btns-group mt-1 mb-3">
         <a th:href="@{/order/add}" class="waves-effect waves-light btn-small">Сформировать заказ</a>
         <a sec:authorize="hasAuthority('ADMIN')" href="#create-goods" class="waves-effect waves-light btn-small  modal-trigger">Создать новый товар</a>
     </div>
     <form method="post" class="row mb-1 inline-form" th:action="@{/goods}" th:object="${filterDto}">
-        <div class="input-field col s5">
+        <div class="input-field col m5">
             <input id="nameFilter" name="name" th:field="*{name}" type="text" class="validate">
             <label for="nameFilter">Поиск</label>
         </div>
@@ -43,7 +43,7 @@
                         <p class="card-content-item">Название - <bold><span th:text="${item.getName()}"></span></bold></p>
                         <p class="card-content-item">Описание - <bold><span th:text="${item.getDescription()}"></span></bold></p>
                     </div>
-                    <div sec:authorize="hasAuthority('ADMIN')" class="card-action between">
+                    <div sec:authorize="hasAuthority('ADMIN')" class="card-action between wrap">
                         <a class="waves-effect waves-light mini-btn btn-small modal-trigger" th:href="'#' + ${item.getId()} + '_1'">Изменить товар</a>
                         <a class="waves-effect waves-light mini-btn btn-small modal-trigger" th:href="'#' + ${item.getId()} + '_2'">Изменить скидку</a>
                     </div>
@@ -52,25 +52,25 @@
                             <div class="modal-content">
                                 <h5 class="mb-2">Измените товар!</h5>
                                 <div class="row mb-1">
-                                    <div class="input-field col s3">
+                                    <div class="input-field col m3 s6">
                                         <input required id="nameEdit" name="name"  th:value="${item.getName()}" type="text" class="validate">
                                         <label for="nameEdit">Название</label>
                                     </div>
-                                    <div class="input-field col s3">
+                                    <div class="input-field col m3 s6">
                                         <input required id="goodsType" name="goodsType"  th:value="${item.getGoodsType()}" type="text" class="validate">
                                         <label for="goodsType">Тип</label>
                                     </div>
-                                    <div class="input-field col s6">
+                                    <div class="input-field col m6 12">
                                         <input required id="img" name="img"  th:value="${item.getImg()}" type="text" class="validate">
                                         <label for="img">Ссылка на картинку</label>
                                     </div>
                                 </div>
                                 <div class="row mb-1">
-                                    <div class="input-field col s2">
+                                    <div class="input-field col m2 s10">
                                         <input required id="price" name="price" th:value="${item.getPrice()}" type="number" class="validate">
                                         <label for="price">Цена</label>
                                     </div>
-                                    <div class="input-field col s10">
+                                    <div class="input-field col m10 s12">
                                         <input required id="description" name="description" th:value="${item.getDescription()}" type="text" class="validate">
                                         <label for="description">Описание</label>
                                     </div>
@@ -104,27 +104,27 @@
     <div id="create-goods" class="modal">
         <form class="col s12 m12" method="post" th:action="@{/goods/create}" th:object="${newGoodsItem}">
             <div class="modal-content">
-                <h5 class="mb-2">создайте новые товар!</h5>
+                <h5 class="mb-2">Создайте новый товар!</h5>
                 <div class="row mb-1">
-                    <div class="input-field col s3">
+                    <div class="input-field col m3 s12">
                         <input required id="nameCreate" name="name" th:field="*{name}" type="text" class="validate">
                         <label for="nameCreate">Название</label>
                     </div>
-                    <div class="input-field col s3">
+                    <div class="input-field col m3 s12">
                         <input required id="goodsTypeCreate" name="goodsType" th:field="*{goodsType}" type="text" class="validate">
                         <label for="goodsTypeCreate">Тип</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div class="input-field col m6 s12">
                         <input required id="imgCreate" name="img" th:field="*{img}" type="text" class="validate">
                         <label for="imgCreate">Ссылка на картинку</label>
                     </div>
                 </div>
                 <div class="row mb-1">
-                    <div class="input-field col s2">
+                    <div class="input-field col m2 s12">
                         <input required id="priceCreate" name="price" th:field="*{price}" type="number" class="validate">
                         <label for="priceCreate">Цена</label>
                     </div>
-                    <div class="input-field col s10">
+                    <div class="input-field col m10 s12">
                         <input required id="descriptionCreate" name="description" th:field="*{description}" type="text" class="validate">
                         <label for="descriptionCreate">описание</label>
                     </div>

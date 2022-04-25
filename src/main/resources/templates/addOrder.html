@@ -24,8 +24,8 @@
         </div>
     </form>
     <h3 class="col s12 center-x" style="width: 100%" th:if="${goods.size() == 0}">Товары не найдены</h3>
-    <div class="row" style="display: flex; align-items: stretch">
-        <div class="col s8">
+    <div class="row wrap" style="display: flex; align-items: stretch">
+        <div class="col m8 s12">
             <div class="row wrap" style="display: flex; align-items: stretch">
                 <div class="col s12 l6" style="margin-left: 0 !important;" th:each="item : ${goods}">
                     <div class="card horizontal m-0 card-goods">
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s4">
+        <div class="col m4 s12">
             <form id="create-order-form" class="col s12 m12" method="post" th:action="@{/order}" th:object="${orderDto}">
                 <h5 class="mb-2">Cоздайте заказ!</h5>
                 <div class="row mb-1">

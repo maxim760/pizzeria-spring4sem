@@ -7,21 +7,21 @@
     <div>Подарите сертификат</div>
     <p>Ваш баланс — <bold><span th:text="${#authentication.getPrincipal().getCash()}"></span></bold></p>
   <form method="post" class="row mb-1 inline-form" th:action="@{/certificate/add}" th:object="${newUser}">
-        <div class="input-field col s3">
+        <div class="input-field col m3 s6">
             <input id="firstName" th:field="*{firstName}" type="text" class="validate">
             <label for="firstName">Имя</label>
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col m4 s6">
             <input id="lastName" name="lastName" th:field="*{lastName}" type="text" class="validate">
             <label for="price">Фамилия</label>
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col m4 s9">
             <input id="username" name="username" th:field="*{username}" type="text" class="validate">
             <label for="username">Логин</label>
         </div>
-      <div class="cols s-1">
-          <button class="waves-effect waves-light btn-small" type="submit"><i class="material-icons">search</i></button>
-      </div>
+       <div class="cols m1 s3 col">
+           <button class="waves-effect waves-light btn-small" type="submit"><i class="material-icons">search</i></button>
+       </div>
     </form>
 
     <div class="row wrap">
@@ -41,7 +41,7 @@
                             <div class="modal-content">
                                 <div class="row mb-1">
                                     <h5>Подарите сертификат на нужную сумму!</h5>
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s12 mt-2">
                                         <input required id="price" name="price" th:value="0" type="number" class="validate">
                                         <label for="price">На сумму</label>
                                     </div>

@@ -8,7 +8,7 @@
     <div sec:authorize="isAuthenticated()">
         <h2>Ваш профиль</h2>
         <p>Ваш баланс — <bold><span th:text="${#authentication.getPrincipal().getCash()}"></span></bold></p>
-        <div style="display: flex; justify-content: space-around; width: 100%; align-items: baseline">
+        <div class="profile-row" style="display: flex; justify-content: space-around; width: 100%; align-items: baseline">
             <ul class="collection with-header home-info">
                 <li class="collection-header home-info-item-header"><h3 class="home-info-value">Основная информация</h3></li>
                 <li class="collection-item home-info-item"><span>Имя</span><p class="home-info-value" th:text="${user.getFirstName()}"></p></li>
@@ -31,10 +31,16 @@
                 <li class="collection-item home-info-item"><span>Коммент</span><p class="home-info-value" th:text="${address.getCommentary()}"></p></li>
             </ul>
         </div>
-        <div style="display: flex; width: 100%; justify-content: center" class="row mb-2 mt-1">
-            <a class="waves-effect waves-light btn modal-trigger" href="#modal-balance">Пополнить баланс</a>
-            <a class="waves-effect waves-light btn modal-trigger ml-1" href="#modal-main">Изменить основную информацию</a>
-            <a class="waves-effect waves-light btn modal-trigger ml-1" href="#modal-address">Изменить адрес</a>
+        <div class="row mb-2 mt-1">
+            <div class="col l4 s12 p0 mb-1">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal-balance">Пополнить баланс</a>
+            </div>
+            <div class="l4 s12 col p0 mb-1">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal-main">Изменить основную информацию</a>
+            </div>
+            <div class="col l4 s12 p0 mb-1">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal-address">Изменить адрес</a>
+            </div>
         </div>
 
         <!-- Modal Structure -->
@@ -57,21 +63,21 @@
             <form class="col s12" method="post" th:action="@{/profile/main}" th:object="${user}">
                 <div class="modal-content">
                     <div class="row mb-1">
-                        <div class="input-field col s6">
+                        <div class="input-field col m6 s12">
                             <input required id="firstName" name="firstName" th:value="${user.getFirstName()}" type="text" class="validate">
                             <label for="firstName">Имя</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6 s12">
                             <input required id="lastName" name="lastName" type="text" th:value="${user.getLastName}" class="validate">
                             <label for="lastName">Фамилия</label>
                         </div>
                     </div>
                     <div class="row mb-1">
-                        <div class="input-field col s6">
+                        <div class="input-field col m6 s12">
                             <input required id="email" name="email" th:value="${user.getEmail}" type="email" class="validate">
                             <label for="email">Почта</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col m6 s12">
                             <input required id="phone" name="phone" th:value="${user.getPhone}" type="text" class="validate">
                             <label for="phone">Телефон</label>
                         </div>
@@ -106,15 +112,15 @@
                         </div>
                     </div>
                     <div class="row mb-1">
-                        <div class="input-field col s2">
+                        <div class="input-field col s6 m2">
                             <input required id="entrance" name="entrance" th:value="${address.getEntrance()}" type="text" class="validate">
                             <label for="entrance">Подъезд</label>
                         </div>
-                        <div class="input-field col s2">
+                        <div class="input-field col s6 m2">
                             <input required id="flat" name="flat" th:value="${address.getFlat()}" type="number" class="validate">
                             <label for="flat">Квартира</label>
                         </div>
-                        <div class="input-field col s8">
+                        <div class="input-field col m8 s12">
                             <input id="commentary" name="commentary" th:value="${address.getCommentary()}" type="text" class="validate">
                             <label for="commentary">Комментарий</label>
                         </div>
